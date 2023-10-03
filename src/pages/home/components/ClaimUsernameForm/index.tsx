@@ -8,9 +8,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 const claimUsernameFormSchema = z.object({
   username: z
     .string()
-    .min(3, { message: 'O nome usuário precisa ter pelo menos 3 letras.' })
+    .min(3, { message: 'O nome do usuário precisa ter pelo menos 3 letras.' })
     .regex(/^([a-z\\-]+)$/i, {
-      message: 'O usuário pode ter apenas letras e hifens.',
+      message: 'O nome do usuário pode ter apenas letras e hifens.',
     })
     .transform((username) => username.toLocaleLowerCase()),
 })
@@ -33,7 +33,7 @@ export function ClaimUsernameForm() {
   return (
     <Form as="form" onSubmit={handleSubmit(handlePreRegister)}>
       <TextInput
-        crossOrigin
+        crossOrigin="true"
         size="sm"
         prefix="ignite.com/"
         placeholder="seu-usuário"
