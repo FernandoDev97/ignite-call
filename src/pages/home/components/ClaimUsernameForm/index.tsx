@@ -4,6 +4,7 @@ import { Form, FormAnnotation } from './styles'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
 
 const claimUsernameFormSchema = z.object({
   username: z
@@ -26,8 +27,12 @@ export function ClaimUsernameForm() {
     resolver: zodResolver(claimUsernameFormSchema),
   })
 
-  const handlePreRegister = (data: ClaimUsernameFormData) => {
-    console.log(data)
+  const router = useRouter()
+
+  const handlePreRegister = async (data: ClaimUsernameFormData) => {
+    const { username } = data
+
+    await router.push(`/register?username=${username}`)
   }
 
   return (
