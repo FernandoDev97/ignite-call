@@ -17,8 +17,6 @@ export default function ConnectCalendar() {
     await signIn('google')
   }
 
-  console.log(session)
-
   return (
     <Container>
       <Header>
@@ -57,8 +55,7 @@ export default function ConnectCalendar() {
             permissões de acesso ao Google Calendar
           </AuthError>
         )}
-
-        <Button type="submit" disabled={!isSignedId}>
+        <Button onClick={() => router.push('/register/time-intervals')} type="button" disabled={!isSignedId}>
           Próximo passo
           <ArrowRight />
         </Button>
