@@ -23,6 +23,7 @@ import {
 } from './styles'
 import { convertTimeStringToMinutes } from '../../../utils/convert-time-in-minutes'
 import { api } from '../../../lib/axios'
+import { useRouter } from 'next/router'
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
@@ -66,6 +67,8 @@ type TimeIntervalsFormInput = z.input<typeof timeIntervalsFormSchema>
 type TimeIntervalsFormOutput = z.output<typeof timeIntervalsFormSchema>
 
 export default function TimeIntervals() {
+  const routes = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -101,6 +104,7 @@ export default function TimeIntervals() {
     await api.post('/users/time-intervals', {
       intervals,
     })
+    routes.push('/register/update-profile')
   }
 
   return (
